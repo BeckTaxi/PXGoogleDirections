@@ -56,7 +56,8 @@ public enum PXLocation {
 	- returns: `true` if opening in the Google Maps is available, `false` otherwise
 	*/
 	public func openInGoogleMaps(mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: URL?, callbackName: String?, fallbackToAppleMaps: Bool = true) -> Bool {
-		// Prepare the base URL parameters with provided arguments
+		/*
+        // Prepare the base URL parameters with provided arguments
 		let params = PXGoogleDirections.handleGoogleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
 		// Build the Google Maps URL and open it
 		if let url = PXGoogleDirections.buildGoogleMapsURL(params: params, callbackURL: callbackURL, callbackName: callbackName) {
@@ -71,6 +72,8 @@ public enum PXLocation {
 				return true
 			}
 		}
+ */
+        // fix for extensions api
 		return false
 	}
 	
@@ -87,7 +90,8 @@ public enum PXLocation {
 	- returns: `true` if opening in the Google Maps is available, `false` otherwise
 	*/
 	public func searchInGoogleMaps(_ query: String, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: URL?, callbackName: String?, fallbackToAppleMaps: Bool = true) -> Bool {
-		// Prepare the base URL parameters with provided arguments
+		/*
+        // Prepare the base URL parameters with provided arguments
 		var params = PXGoogleDirections.handleGoogleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
 		// Add the query string
 		params.append("q=\(query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")
@@ -105,6 +109,8 @@ public enum PXLocation {
 				return true
 			}
 		}
+ */
+        // fix for extensions api
 		return false
 	}
 }

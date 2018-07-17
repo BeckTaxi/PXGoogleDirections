@@ -81,7 +81,9 @@ public class PXGoogleDirections: NSObject {
 	public static var apiBaseURL: String { return _apiBaseURL }
 	///	Returns `true` if the Google Maps app is installed and can open places and directions URLs, `false` otherwise
 	public static var canOpenInGoogleMaps: Bool {
-		return UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) && UIApplication.shared.canOpenURL(URL(string: "comgooglemaps-x-callback://")!)
+		return false
+        // fix for extensions api
+            //UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) && UIApplication.shared.canOpenURL(URL(string: "comgooglemaps-x-callback://")!)
 	}
 
 	// MARK: Instance variables
@@ -248,18 +250,20 @@ public class PXGoogleDirections: NSObject {
 		// Try to create a request URL using the supplied parameters
 		if let requestURL = directionsAPIRequestURL {
             // Show network activity indicator
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            }
+//            DispatchQueue.main.async {
+//                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//            }
+            // fix for extensions api
 			// Notify delegeate (if any)
 			let runQuery = (delegate == nil ? true : (delegate!.googleDirectionsWillSendRequestToAPI?(self, withURL: requestURL) ?? true))
 			// Handle the case where the delegate might have askeed to cancel the request
 			if runQuery {
 				URLSession.shared.dataTask(with: requestURL, completionHandler: { (data, response, error) -> Void in
 					// Hide network activity indicator
-                    DispatchQueue.main.async {
-                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    }
+//                    DispatchQueue.main.async {
+//                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//                    }
+                    // fix for extensions api
 					// Notify delegate
 					self.delegate?.googleDirections?(self, didReceiveRawDataFromAPI: data!)
 					// Check for any error (from an NSURLSession point of view)
@@ -442,6 +446,7 @@ public class PXGoogleDirections: NSObject {
 	- returns: `true` if opening in the Google Maps is available, `false` otherwise
 	*/
 	public func openInGoogleMaps(center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: URL?, callbackName: String?, fallbackToAppleMaps: Bool = true) -> Bool {
+        /*
 		// Ensure both origin and destination are set
 		if let f = from, let t = to {
 			// Ensure there is actually something specified for both origin and destination addresses
@@ -472,6 +477,8 @@ public class PXGoogleDirections: NSObject {
 				}
 			}
 		}
+ */
+        // fix for extensions api
 		return false
 	}
 
