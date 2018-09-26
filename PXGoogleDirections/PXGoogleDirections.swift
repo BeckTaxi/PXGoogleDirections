@@ -71,9 +71,13 @@ public class PXGoogleDirections: NSObject {
 		}
 		set {
 			_apiKey = newValue
-			GMSServices.provideAPIKey(_apiKey)
+            if !skipGMSServiceProviderAPIKeyInit {
+                GMSServices.provideAPIKey(_apiKey)
+            }
 		}
 	}
+    
+    public static var skipGMSServiceProviderAPIKeyInit = false
 
 	// MARK: Class variables
 
