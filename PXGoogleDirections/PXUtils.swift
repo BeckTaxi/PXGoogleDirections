@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public extension UIColor {
-	public convenience init?(hexColor: String) {
+    convenience init?(hexColor: String) {
 		var red: CGFloat?
 		var green: CGFloat?
 		var blue: CGFloat?
